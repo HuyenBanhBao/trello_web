@@ -6,8 +6,8 @@ import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/s
 // import { ThemeProvider } from "@mui/material/styles";
 
 // ------------------- IMPORT FROM FOLDERS -------------------
-import App from "./App.jsx";
-import theme from "./theme.js";
+import App from "~/App.jsx";
+import theme from "~/theme.js";
 
 // ------------------- MAIN -------------------
 createRoot(document.getElementById("root")).render(

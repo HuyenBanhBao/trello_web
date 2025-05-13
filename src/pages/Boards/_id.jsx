@@ -1,10 +1,10 @@
 // --------------------- IMPORT FROM LIBRATORY ---------------------
 import React from "react";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 // --------------------- IMPORT COMPONENTS ---------------------
-import AppBar from "../../components/AppBar";
+// import AppBar from "../../components/AppBar";
+import AppBar from "~/components/AppBar";
 import BoardBar from "./BoardBar";
 import BoardContent from "./BoardContent";
 // --------------------- MAIN COMPONENT ---------------------

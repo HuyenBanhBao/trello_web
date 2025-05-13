@@ -1,5 +1,5 @@
 // --------------------- IMPORT COMPONENTS -------------------------
-import Board from "./pages/Boards/_id";
+import Board from "~/pages/Boards/_id";
 // --------------------- FUNCTIONAL COMPONENTS ---------------------
 // --------------------- MAIN COMPONENT ---------------------
 function App() {
