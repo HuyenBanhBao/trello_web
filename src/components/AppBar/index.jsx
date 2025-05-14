@@ -22,7 +22,7 @@ const AppBar = () => {
     return (
         <>
             <Box
-                px={2}
+                px={{ xs: 1, md: 2 }}
                 sx={{
                     // backgroundColor: "primary.light",
                     width: "100%",
@@ -30,14 +30,30 @@ const AppBar = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
+                    gap: 2,
+                    overflowX: "auto",
                 }}
             >
                 {/*  */}
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2 }}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: { xs: 0.5, md: 2 },
+                    }}
+                >
                     {/* ------------------------- MENU BAR ------------------------- */}
                     <AppIcon sx={{ color: "primary.main", width: "30px", height: "30px" }} />
                     {/* ------------------------- AVATAR ------------------------- */}
-                    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 0.5 }}>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: { md: 0.5 },
+                        }}
+                    >
                         <Trello sx={{ color: "primary.main", width: "30px", height: "30px" }} />
                         <Typography
                             variant="span"
@@ -52,11 +68,13 @@ const AppBar = () => {
                         </Typography>
                     </Box>
                     {/* ------------------------- SEARCH ------------------------- */}
-                    <Workspaces />
-                    <Recent />
-                    <Starred />
-                    <Templates />
-                    <Button variant="outlined">Create</Button>
+                    <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
+                        <Workspaces />
+                        <Recent />
+                        <Starred />
+                        <Templates />
+                        <Button variant="outlined">Create</Button>
+                    </Box>
                 </Box>
 
                 {/* ------------------------- MODE SELECT ------------------------- */}
