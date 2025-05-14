@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 const Search = () => {
     return (
         <>
-            <Box>
+            <Box sx={{ minWidth: 120 }}>
                 <TextField id="outlined-search" label="Search..." type="search" size="small" />
             </Box>
         </>
