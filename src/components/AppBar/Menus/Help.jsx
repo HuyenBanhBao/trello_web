@@ -6,7 +6,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 const Help = () => {
     return (
         <>
-            <Tooltip title="Delete">
+            <Tooltip title="Delete" sx={{ color: "white" }}>
                 <IconButton>
                     <HelpOutlineIcon />
                 </IconButton>

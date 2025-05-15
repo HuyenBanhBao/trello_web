@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 // --------------------- IMPORT ICONS -------------------------
 import AppIcon from "@mui/icons-material/Apps";
 import Trello from "@mui/icons-material/ViewKanban";
-
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 // --------------------- IMPORT COMPONENTS -------------------------
 import Workspaces from "./Menus/Workspaces";
 import Recent from "./Menus/Recent";
@@ -24,7 +24,6 @@ const AppBar = () => {
             <Box
                 px={{ xs: 1, md: 2 }}
                 sx={{
-                    // backgroundColor: "primary.light",
                     width: "100%",
                     height: (theme) => theme.trello.appBarHeight,
                     display: "flex",
@@ -32,6 +31,7 @@ const AppBar = () => {
                     justifyContent: "space-between",
                     gap: 2,
                     overflowX: "auto",
+                    bgcolor: (theme) => (theme.palette.mode === "dark" ? "#2c3e50" : "#7158e2"),
                 }}
             >
                 {/*  */}
@@ -44,7 +44,7 @@ const AppBar = () => {
                     }}
                 >
                     {/* ------------------------- MENU BAR ------------------------- */}
-                    <AppIcon sx={{ color: "primary.main", width: "30px", height: "30px" }} />
+                    <AppIcon sx={{ color: "white", width: "30px", height: "30px" }} />
                     {/* ------------------------- AVATAR ------------------------- */}
                     <Box
                         sx={{
@@ -54,14 +54,14 @@ const AppBar = () => {
                             gap: { md: 0.5 },
                         }}
                     >
-                        <Trello sx={{ color: "primary.main", width: "30px", height: "30px" }} />
+                        <Trello sx={{ color: "white", width: "30px", height: "30px" }} />
                         <Typography
                             variant="span"
                             sx={{
                                 display: "inline-block",
                                 fontSize: "1.2rem",
                                 fontWeight: "bold",
-                                color: "primary.main",
+                                color: "white",
                             }}
                         >
                             Trello
@@ -73,7 +73,13 @@ const AppBar = () => {
                         <Recent />
                         <Starred />
                         <Templates />
-                        <Button variant="outlined">Create</Button>
+                        <Button
+                            sx={{ color: "white", border: "none", "&:hover": { border: "none" } }}
+                            variant="outlined"
+                            startIcon={<LibraryAddIcon />}
+                        >
+                            Create
+                        </Button>
                     </Box>
                 </Box>
 
