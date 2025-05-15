@@ -8,9 +8,9 @@ import IconButton from "@mui/material/IconButton";
 const BadgeContent = () => {
     return (
         <>
-            <Tooltip title="Notifications">
+            <Tooltip title="Notifications" sx={{ color: "white" }}>
                 <IconButton>
-                    <Badge color="secondary" variant="dot">
+                    <Badge color="warning" variant="dot">
                         <NotificationsNoneIcon />
                     </Badge>
                 </IconButton>
