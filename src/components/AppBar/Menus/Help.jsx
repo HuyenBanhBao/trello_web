@@ -6,7 +6,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 const Help = () => {
     return (
         <>
-            <Tooltip title="Delete" sx={{ color: "white" }}>
+            <Tooltip title="Delete" sx={{ color: (theme) => theme.trello.primaryColorTextBar }}>
                 <IconButton>
                     <HelpOutlineIcon />
                 </IconButton>

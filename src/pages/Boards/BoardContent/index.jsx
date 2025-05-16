@@ -1,20 +1,39 @@
+// ---------------------- IMPORT LIB ----------------------
 import React from "react";
 import Box from "@mui/material/Box";
 
+// --------------------- IMPORT COMPONENTS ---------------------
+import BoardColumns from "../BoardColumns";
 // --------------------- MAIN COMPONENT ---------------------
 const BoardContent = () => {
     return (
         <>
             <Box
                 sx={{
-                    bgcolor: (theme) => (theme.palette.mode === "dark" ? "#34495e" : "#7d5fff"),
                     width: "100%",
-                    height: (theme) => `calc(100vh - ${theme.trello.appBarHeight} - ${theme.trello.boardBarHeight})`,
-                    display: "flex",
-                    alignItems: "center",
+                    p: "10px 0",
+                    height: (theme) => theme.trello.boardContentHeight,
+                    background: (theme) =>
+                        theme.palette.mode === "dark" ? theme.trello.gradientBgDark : theme.trello.gradientBg,
                 }}
             >
-                Board Content
+                {/* --------------------- BOX COLUMNS ---------------------- */}
+
+                <Box
+                    sx={{
+                        background: "inherit",
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        overflowX: "auto",
+                        overflowY: "hidden",
+                        "&::-webkit-scrollbar-track": { m: 2 },
+                    }}
+                >
+                    <BoardColumns />
+                    <BoardColumns />
+                    <BoardColumns />
+                </Box>
             </Box>
         </>
     );

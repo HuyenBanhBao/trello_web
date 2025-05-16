@@ -26,9 +26,9 @@ const ModeSelect = () => {
                 <InputLabel
                     id="label-select-dark-light-mode"
                     sx={{
-                        color: "white",
+                        color: (theme) => theme.trello.primaryColorTextBar,
                         "&.Mui-focused": {
-                            color: "white",
+                            color: (theme) => theme.trello.primaryColorTextBar,
                         },
                     }}
                 >
@@ -41,18 +41,18 @@ const ModeSelect = () => {
                     label="Mode"
                     onChange={handleChange}
                     sx={{
-                        color: "white",
+                        color: (theme) => theme.trello.primaryColorTextBar,
                         ".MuiOutlinedInput-notchedOutline": {
-                            borderColor: "white",
+                            borderColor: (theme) => theme.trello.primaryColorTextBar,
                         },
                         "&:hover .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "white",
+                            borderColor: (theme) => theme.trello.primaryColorTextBar,
                         },
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "white",
+                            borderColor: (theme) => theme.trello.primaryColorTextBar,
                         },
                         ".MuiSvgIcon-root": {
-                            color: "white",
+                            color: (theme) => theme.trello.primaryColorTextBar,
                         },
                     }}
                 >

@@ -15,17 +15,16 @@ import BoltIcon from "@mui/icons-material/Bolt";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Tooltip from "@mui/material/Tooltip";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { Padding } from "@mui/icons-material";
 
-// --------------------- FUNCTION COMPONENTS -------------------------
+// --------------------- STYLES -------------------------
 const MENU_STYLES = {
-    color: "white",
+    color: (theme) => theme.trello.primaryColorTextBar,
     bgcolor: "transparent",
     border: "none",
     px: { md: 0, lg: 1 },
     borderRadius: "4px",
     "& .MuiSvgIcon-root": {
-        color: "white",
+        color: (theme) => theme.trello.primaryColorTextBar,
     },
 };
 
@@ -49,7 +48,8 @@ const BoardBar = () => {
                     justifyContent: "space-between",
                     gap: 2,
                     overflowX: "auto",
-                    borderBottom: "1px solid white",
+                    borderBottom: "1px solid ",
+                    borderBottomColor: (theme) => theme.trello.primaryColorTextBar,
                     bgcolor: (theme) => (theme.palette.mode === "dark" ? "#34495e" : "#7d5fff"),
                 }}
             >
@@ -67,7 +67,11 @@ const BoardBar = () => {
                     <Button
                         variant="outlined"
                         startIcon={<PersonAddIcon />}
-                        sx={{ color: "white", borderColor: "white", "&:hover": { borderColor: "white" } }}
+                        sx={{
+                            color: (theme) => theme.trello.primaryColorTextBar,
+                            borderColor: (theme) => theme.trello.primaryColorTextBar,
+                            "&:hover": { borderColor: (theme) => theme.trello.primaryColorTextBar },
+                        }}
                     >
                         Invite
                     </Button>
@@ -80,6 +84,11 @@ const BoardBar = () => {
                                 height: 32,
                                 fontSize: 16,
                                 border: "none",
+                                color: (theme) => theme.trello.primaryColorTextBar,
+                                cursor: "pointer",
+                                "&:first-of-type": {
+                                    bgcolor: "#a4b0b3",
+                                },
                             },
                         }}
                     >

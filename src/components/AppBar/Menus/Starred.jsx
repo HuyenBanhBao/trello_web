@@ -33,7 +33,7 @@ const Starred = () => {
                 }}
             >
                 <Button
-                    sx={{ color: "white" }}
+                    sx={{ color: (theme) => theme.trello.primaryColorTextBar }}
                     id="basic-button-starred"
                     aria-controls={open ? "basic-menu-starred" : undefined}
                     aria-haspopup="true"

@@ -33,7 +33,7 @@ const Recent = () => {
                 }}
             >
                 <Button
-                    sx={{ color: "white" }}
+                    sx={{ color: (theme) => theme.trello.primaryColorTextBar }}
                     id="basic-button-recent"
                     aria-controls={open ? "basic-menu-recent" : undefined}
                     aria-haspopup="true"

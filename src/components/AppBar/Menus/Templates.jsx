@@ -33,7 +33,7 @@ const Templates = () => {
                 }}
             >
                 <Button
-                    sx={{ color: "white" }}
+                    sx={{ color: (theme) => theme.trello.primaryColorTextBar }}
                     id="basic-button-templates"
                     aria-controls={open ? "basic-menu-templates" : undefined}
                     aria-haspopup="true"

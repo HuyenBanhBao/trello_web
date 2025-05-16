@@ -38,7 +38,7 @@ const Workspaces = () => {
                 }}
             >
                 <Button
-                    sx={{ color: "white" }}
+                    sx={{ color: (theme) => theme.trello.primaryColorTextBar }}
                     id="basic-button-workspaces"
                     aria-controls={open ? "basic-menu-workspaces" : undefined}
                     aria-haspopup="true"

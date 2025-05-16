@@ -23,35 +23,38 @@ const Search = () => {
                         minWidth: "120px",
                         maxWidth: "180px",
                         "& label": {
-                            color: "white",
+                            color: (theme) => theme.trello.primaryColorTextBar,
                         },
                         "& input": {
-                            color: "white",
+                            color: (theme) => theme.trello.primaryColorTextBar,
                         },
                         "& label.Mui-focused": {
-                            color: "white",
+                            color: (theme) => theme.trello.primaryColorTextBar,
                         },
                         "& .MuiOutlinedInput-root": {
                             "& fieldset": {
-                                borderColor: "white",
+                                borderColor: (theme) => theme.trello.primaryColorTextBar,
                             },
                             "&:hover fieldset": {
-                                borderColor: "white",
+                                borderColor: (theme) => theme.trello.primaryColorTextBar,
                             },
                             "&.Mui-focused fieldset": {
-                                borderColor: "white",
+                                borderColor: (theme) => theme.trello.primaryColorTextBar,
                             },
                         },
                     }}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <SearchIcon sx={{ color: "white" }} />
+                                <SearchIcon sx={{ color: (theme) => theme.trello.primaryColorTextBar }} />
                             </InputAdornment>
                         ),
                         endAdornment: searchValue && (
                             <InputAdornment position="end" onClick={() => setSearchValue("")}>
-                                <CloseIcon fontSize="small" sx={{ color: "white", cursor: "pointer" }} />
+                                <CloseIcon
+                                    fontSize="small"
+                                    sx={{ color: (theme) => theme.trello.primaryColorTextBar, cursor: "pointer" }}
+                                />
                             </InputAdornment>
                         ),
                     }}

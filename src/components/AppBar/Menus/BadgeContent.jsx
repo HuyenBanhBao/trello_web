@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 const BadgeContent = () => {
     return (
         <>
-            <Tooltip title="Notifications" sx={{ color: "white" }}>
+            <Tooltip title="Notifications" sx={{ color: (theme) => theme.trello.primaryColorTextBar }}>
                 <IconButton>
                     <Badge color="warning" variant="dot">
                         <NotificationsNoneIcon />
