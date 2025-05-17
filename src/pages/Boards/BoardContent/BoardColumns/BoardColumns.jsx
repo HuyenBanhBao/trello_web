@@ -5,7 +5,7 @@ import BoardColumn from "./BoardColumn/BoardColumn";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
 // ---------------------------------- MAIN COMPONENT ---------------------
-const BoardColumns = () => {
+const BoardColumns = ({ columns }) => {
     return (
         <>
             <Box
@@ -19,8 +19,9 @@ const BoardColumns = () => {
                     "&::-webkit-scrollbar-track": { m: 2 },
                 }}
             >
-                <BoardColumn />
-                <BoardColumn />
+                {columns?.map((column) => (
+                    <BoardColumn key={column._id} column={column} />
+                ))}
 
                 {/* -------------------- ADD NEW COLUMN -------------------- */}
                 <Box
