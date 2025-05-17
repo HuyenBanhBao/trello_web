@@ -12,25 +12,13 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import ForumIcon from "@mui/icons-material/Forum";
 // -------------------------- MAIN COMPONENT --------------------------
 
-const CardMain = ({ temporaryHideMedia }) => {
-    if (temporaryHideMedia) {
-        return (
-            <>
-                <Card
-                    sx={{
-                        cursor: "pointer",
-                        boxShadow: "0px 1px 10px  rgba(0,0,0,0.2)",
-                        overflow: "unset",
-                    }}
-                >
-                    <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-                        <Typography>TunDev Test</Typography>
-                    </CardContent>
-                </Card>
-            </>
-        );
-    }
+const CardMain = ({ card }) => {
+    // -------------------------- FUNCTION --------------------------
+    const showCardAction = () => {
+        return !!card?.memberIds?.length || !!card?.comments?.length || !!card?.attachments?.length;
+    };
 
+    // -------------------------- RETURN --------------------------
     return (
         <>
             <Card
@@ -40,25 +28,29 @@ const CardMain = ({ temporaryHideMedia }) => {
                     overflow: "unset",
                 }}
             >
-                <CardMedia
-                    sx={{ height: 140 }}
-                    image="https://plus.unsplash.com/premium_photo-1725400833844-002996739d10?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fHpvb3xlbnwwfHwwfHx8MA%3D%3D"
-                    title="green iguana"
-                />
+                {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
                 <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-                    <Typography>TunDev Fullstack</Typography>
+                    <Typography>{card?.title}</Typography>
                 </CardContent>
-                <CardActions sx={{ p: "0 4px 8px 4px" }}>
-                    <Button startIcon={<GroupIcon />} size="small">
-                        20
-                    </Button>
-                    <Button startIcon={<ForumIcon />} size="small">
-                        15
-                    </Button>
-                    <Button startIcon={<AttachmentIcon />} size="small">
-                        20
-                    </Button>
-                </CardActions>
+                {showCardAction() && (
+                    <CardActions sx={{ p: "0 4px 8px 4px" }}>
+                        {!!card?.memberIds?.length && (
+                            <Button startIcon={<GroupIcon />} size="small">
+                                {card?.memberIds?.length}
+                            </Button>
+                        )}
+                        {!!card?.comments?.length && (
+                            <Button startIcon={<ForumIcon />} size="small">
+                                {card?.comments?.length}
+                            </Button>
+                        )}
+                        {!!card?.attachments?.length && (
+                            <Button startIcon={<AttachmentIcon />} size="small">
+                                {card?.attachments?.length}
+                            </Button>
+                        )}
+                    </CardActions>
+                )}
             </Card>
         </>
     );

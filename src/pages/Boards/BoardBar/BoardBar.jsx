@@ -15,7 +15,8 @@ import BoltIcon from "@mui/icons-material/Bolt";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Tooltip from "@mui/material/Tooltip";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-
+// --------------------- IMPORT FUNCTIONS -------------------------
+import { capitalizeFirstLetter } from "~/utils/formatters";
 // --------------------- STYLES -------------------------
 const MENU_STYLES = {
     color: (theme) => theme.trello.primaryColorTextBar,
@@ -35,7 +36,7 @@ const MENU_ITEMS = {
 };
 
 // --------------------- MAIN COMPONENT ---------------------
-const BoardBar = () => {
+const BoardBar = ({ board }) => {
     return (
         <>
             <Box
@@ -55,8 +56,13 @@ const BoardBar = () => {
             >
                 {/* -------------- BOARD BAR LEFT ------------------ */}
                 <Box sx={MENU_ITEMS}>
-                    <Chip sx={MENU_STYLES} icon={<DashboardIcon />} label="TunDev" clickable />
-                    <Chip sx={MENU_STYLES} icon={<VpnLockIcon />} label="Public/Private Workspace" clickable />
+                    <Chip sx={MENU_STYLES} icon={<DashboardIcon />} label={board?.title} clickable />
+                    <Chip
+                        sx={MENU_STYLES}
+                        icon={<VpnLockIcon />}
+                        label={capitalizeFirstLetter(board?.type)}
+                        clickable
+                    />
                     <Chip sx={MENU_STYLES} icon={<AddToDriveIcon />} label="Add To Google Drive" clickable />
                     <Chip sx={MENU_STYLES} icon={<BoltIcon />} label="Automation" clickable />
                     <Chip sx={MENU_STYLES} icon={<FilterListIcon />} label="Filter" clickable />

@@ -3,8 +3,14 @@ import React from "react";
 import Box from "@mui/material/Box";
 // --------------------- IMPORT COMPONENTS ---------------------
 import BoardColumns from "./BoardColumns/BoardColumns";
+// -------------------- IMPORT UTILS ---------------------
+import { mapOrder } from "~/utils/sorts";
 // --------------------- MAIN COMPONENT ---------------------
-const BoardContent = () => {
+const BoardContent = ({ board }) => {
+    // --------------------- FUNCTION ---------------------
+    const orderedColumns = mapOrder(board?.columns, board?.columnOrderIds, "_id");
+
+    // --------------------- RETURN ---------------------
     return (
         <>
             <Box
@@ -17,7 +23,8 @@ const BoardContent = () => {
                 }}
             >
                 {/* --------------------- BOX COLUMNS ---------------------- */}
-                <BoardColumns />
+                {/* <BoardColumns columns={board?.columns} /> */}
+                <BoardColumns columns={orderedColumns} />
             </Box>
         </>
     );

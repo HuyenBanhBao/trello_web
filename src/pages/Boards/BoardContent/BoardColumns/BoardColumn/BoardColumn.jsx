@@ -5,9 +5,14 @@ import Box from "@mui/material/Box";
 import HeaderCard from "./ListCards/CardItem/HeaderCard";
 import ListCards from "./ListCards/ListCards";
 import FooterCard from "./ListCards/CardItem/FooterCard";
-
+// -------------------- IMPORT UTILS ---------------------
+import { mapOrder } from "~/utils/sorts";
 // --------------------- MAIN COMPONENT ---------------------
-const BoardColumn = () => {
+const BoardColumn = ({ column }) => {
+    // --------------------- FUNCTION ---------------------
+    const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
+
+    // --------------------- RETURN ---------------------
     return (
         <>
             <Box
@@ -22,9 +27,9 @@ const BoardColumn = () => {
                 }}
             >
                 {/* --------------- HEADER --------------- */}
-                <HeaderCard />
+                <HeaderCard column={column} />
                 {/* --------------- BODY --------------- */}
-                <ListCards />
+                <ListCards cards={orderedCards} />
                 {/* --------------- FOOTER --------------- */}
                 <FooterCard />
             </Box>

@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 // --------------------- IMPORT COMPONENTS ---------------------
 import CardsMain from "./CardItem/CardMain";
 // --------------------- MAIN COMPONENT ---------------------
-const ListCards = () => {
+const ListCards = ({ cards }) => {
     return (
         <>
             <Box
@@ -27,12 +27,9 @@ const ListCards = () => {
                     },
                 }}
             >
-                {/* --------------------- CARD MAIN --------------------- */}
-                <CardsMain />
-                {/* ----------------------- CARD ITEMS ---------------------- */}
-                <CardsMain temporaryHideMedia />
-                <CardsMain temporaryHideMedia />
-                <CardsMain temporaryHideMedia />
+                {cards?.map((card) => (
+                    <CardsMain key={card._id} card={card} />
+                ))}
             </Box>
         </>
     );

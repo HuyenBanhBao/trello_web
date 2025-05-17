@@ -17,7 +17,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 
 // --------------------- MAIN COMPONENT ---------------------
-const HeaderCard = () => {
+const HeaderCard = ({ column }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -37,7 +37,7 @@ const HeaderCard = () => {
                     justifyContent: "space-between",
                 }}
             >
-                <Typography sx={{ fontWeight: "bold", cursor: "pointer" }}>Column Title</Typography>
+                <Typography sx={{ fontWeight: "bold", cursor: "pointer" }}>{column?.title}</Typography>
                 <Box>
                     <Tooltip title="More options">
                         <KeyboardArrowDownIcon
