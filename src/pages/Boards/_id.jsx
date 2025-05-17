@@ -4,9 +4,9 @@ import Container from "@mui/material/Container";
 
 // --------------------- IMPORT COMPONENTS ---------------------
 // import AppBar from "../../components/AppBar";
-import AppBar from "~/components/AppBar";
-import BoardBar from "./BoardBar";
-import BoardContent from "./BoardContent";
+import AppBar from "~/components/AppBar/AppBar";
+import BoardBar from "./BoardBar/BoardBar";
+import BoardContent from "./BoardContent/BoardContent";
 // --------------------- MAIN COMPONENT ---------------------
 const Board = () => {
     return (

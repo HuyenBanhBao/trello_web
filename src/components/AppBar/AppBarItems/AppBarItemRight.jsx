@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 // --------------------- IMPORT COMPONENTS -------------------------
-import ModeSelect from "~/components/ModeSelect";
+import ModeSelect from "~/components/ModeSelect/ModeSelect";
 import Search from "../Menus/Search";
 import BadgeContent from "../Menus/BadgeContent";
 import Help from "../Menus/Help";
