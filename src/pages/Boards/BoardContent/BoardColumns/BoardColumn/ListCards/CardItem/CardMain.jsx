@@ -11,7 +11,26 @@ import GroupIcon from "@mui/icons-material/Group";
 import AttachmentIcon from "@mui/icons-material/Attachment";
 import ForumIcon from "@mui/icons-material/Forum";
 // -------------------------- MAIN COMPONENT --------------------------
-const CardsMain = () => {
+
+const CardMain = ({ temporaryHideMedia }) => {
+    if (temporaryHideMedia) {
+        return (
+            <>
+                <Card
+                    sx={{
+                        cursor: "pointer",
+                        boxShadow: "0px 1px 10px  rgba(0,0,0,0.2)",
+                        overflow: "unset",
+                    }}
+                >
+                    <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
+                        <Typography>TunDev Test</Typography>
+                    </CardContent>
+                </Card>
+            </>
+        );
+    }
+
     return (
         <>
             <Card
@@ -45,4 +64,4 @@ const CardsMain = () => {
     );
 };
 
-export default CardsMain;
+export default CardMain;
