@@ -15,24 +15,23 @@ const BoardColumn = ({ column }) => {
     // --------------------- FUNCTION ---------------------
     const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
 
-    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
         id: column._id,
         data: { ...column },
     });
 
     const dndKitColumnStyles = {
-        touchAction: "none", // Dành cho sensor default dang PointerSSensor
+        // touchAction: "none", // Dành cho sensor default dang PointerSSensor
         // Nếu sử dụng CSS.Transform như docs thì bị lỗi Stretch
         transform: CSS.Translate.toString(transform),
         transition,
+        height: "100%", // "Chieu cao phải Luôn-max-100% vì nếu không sẽ lỗi lúcúc kéo column ngắn quá một cái column dài thì phải kéo ở khu vục giữa giữa rất khó chịu (demo ở video 32). Lưu ý lực này phải kết hợp với{...listeners} nằm ở Box chữ không phải ở div ngoài cùng để tránh trường hợp kéo vào vùng xanh."
+        opacity: isDragging ? 0.5 : undefined,
     };
     // --------------------- RETURN ---------------------
     return (
-        <>
+        <div ref={setNodeRef} style={dndKitColumnStyles} {...attributes}>
             <Box
-                ref={setNodeRef}
-                style={dndKitColumnStyles}
-                {...attributes}
                 {...listeners}
                 sx={{
                     minWidth: { xs: "100px", sm: "300px" },
@@ -42,7 +41,6 @@ const BoardColumn = ({ column }) => {
                     borderRadius: "6px",
                     height: "fit-content",
                     maxHeight: (theme) => `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`,
-
                     WebkitTapHighlightColor: "transparent",
                     userSelect: "none",
                     WebkitUserSelect: "none",
@@ -57,7 +55,7 @@ const BoardColumn = ({ column }) => {
                 {/* --------------- FOOTER --------------- */}
                 <FooterCard />
             </Box>
-        </>
+        </div>
     );
 };
 
