@@ -10,18 +10,38 @@ import Typography from "@mui/material/Typography";
 import GroupIcon from "@mui/icons-material/Group";
 import AttachmentIcon from "@mui/icons-material/Attachment";
 import ForumIcon from "@mui/icons-material/Forum";
+// --------------------- DND KIT ---------------------
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+// --------------------------------------------------------------------
 // -------------------------- MAIN COMPONENT --------------------------
-
 const CardMain = ({ card }) => {
     // -------------------------- FUNCTION --------------------------
     const showCardAction = () => {
         return !!card?.memberIds?.length || !!card?.comments?.length || !!card?.attachments?.length;
     };
 
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+        id: card._id,
+        data: { ...card },
+    });
+
+    const dndKitCardStyles = {
+        // touchAction: "none", // Dành cho sensor default dang PointerSSensor
+        // Nếu sử dụng CSS.Transform như docs thì bị lỗi Stretch
+        transform: CSS.Translate.toString(transform),
+        transition,
+        opacity: isDragging ? 0.5 : undefined,
+    };
+
     // -------------------------- RETURN --------------------------
     return (
         <>
             <Card
+                ref={setNodeRef}
+                style={dndKitCardStyles}
+                {...attributes}
+                {...listeners}
                 sx={{
                     cursor: "pointer",
                     boxShadow: "0px 1px 10px  rgba(0,0,0,0.2)",
