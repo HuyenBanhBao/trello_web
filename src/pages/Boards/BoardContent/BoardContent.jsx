@@ -1,5 +1,5 @@
 // ---------------------- IMPORT LIB ----------------------
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Box from "@mui/material/Box";
 import { cloneDeep } from "lodash";
 // --------------------- IMPORT COMPONENTS ---------------------
@@ -19,6 +19,10 @@ import {
     DragOverlay,
     defaultDropAnimationSideEffects,
     closestCorners,
+    closestCenter,
+    pointerWithin,
+    rectIntersection,
+    getFirstCollision,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 // ----------------------------------------------------------
@@ -35,6 +39,8 @@ const BoardContent = ({ board }) => {
     const [activeDragItemType, setActiveDragItemType] = useState(null);
     const [activeDragItemData, setActiveDragItemData] = useState(null);
     const [oldColumnWhenDraggingCard, setOldColumnWhenDraggingCard] = useState(null);
+    // Biến va chạm cuối cùng, xủ lý thuật toán phát hiện va chạm
+    const lastOverId = useRef(null);
     // const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } });
     // Yêu cầu chuột di chuyển ít nhất 10px thì mới gọi event. Tránh trường hợp gọi hàm khi click chuột vào column
     const mouseSensor = useSensor(MouseSensor, { activationConstraint: { distance: 10 } });
@@ -231,12 +237,43 @@ const BoardContent = ({ board }) => {
         }),
     };
 
-    // ----------------------------------------- RETURN -----------------------------------------
+    const collisionDetectionStrategy = useCallback(
+        (args) => {
+            // trường hợp kéo thả column thì sẽ tìm tới các columnId gần nhất bên trong khu vực va chạm đó dựa vào thuật toán phát hiện va chạm closestCorners
+            if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
+                return closestCorners({ ...args });
+            }
+            const pointerIntersections = pointerWithin(args); //Tìm cá điểm giao nhau , va chạm - intersection với con trỏ
+            // const intersections = !pointerIntersections?.length ? rectIntersection(args) : pointerIntersections;
+            const intersections = pointerIntersections?.length > 0 ? pointerIntersections : rectIntersection(args);
+
+            let overId = getFirstCollision(intersections, "id"); // Tìm overId đầu tiên trong danh sách các intersection ở trên
+            if (overId) {
+                // Nếu cài over nó là column thì sẽ tìm tớiới các cardId gần nhất bên trong khu vực va chạm đó dựa vào thuật toán phát hiện va chạm closestCenters hoặc closestCorners đều đượcđược. Tuy nhiên ở đây dùng closestCenter minh thấy mượt mà hơn.
+                const checkColumn = orderedColumns.find((column) => column._id === overId);
+                if (checkColumn) {
+                    overId = closestCenter({
+                        ...args,
+                        droppableContainers: args.droppableContainers.filter(
+                            (container) => container.id !== overId && checkColumn?.cardsOrderIds?.includes(container.id)
+                        ),
+                    })[0]?.id;
+                }
+                lastOverId.current = overId;
+                return [{ id: overId }];
+            }
+            return lastOverId.current ? [{ id: lastOverId.current }] : [];
+        },
+        [activeDragItemType, orderedColumns]
+    );
+
+    // ========================================== RETURN ==========================================
     return (
         <>
             <DndContext
                 sensors={mySensors}
-                collisionDetection={closestCorners} // Thuật toán phát hiện va chạm giữa các phần tử
+                // collisionDetection={closestCorners} // Thuật toán phát hiện va chạm giữa các phần tử
+                collisionDetection={collisionDetectionStrategy} // Thuật toán phát hiện va chạm giữa các phần tử (sửa bug nhấp nháy khi keo tha)
                 onDragStart={handleDragStart}
                 onDragOver={handleDragOver}
                 onDragEnd={handleDragEnd}
