@@ -56,7 +56,9 @@ const BoardBar = ({ board }) => {
             >
                 {/* -------------- BOARD BAR LEFT ------------------ */}
                 <Box sx={MENU_ITEMS}>
-                    <Chip sx={MENU_STYLES} icon={<DashboardIcon />} label={board?.title} clickable />
+                    <Tooltip title={board?.description}>
+                        <Chip sx={MENU_STYLES} icon={<DashboardIcon />} label={board?.title} clickable />
+                    </Tooltip>
                     <Chip
                         sx={MENU_STYLES}
                         icon={<VpnLockIcon />}
