@@ -1,5 +1,5 @@
 // --------------------- IMPORT FROM LIBRATORY ---------------------
-import React from "react";
+import { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 
 // --------------------- IMPORT COMPONENTS ---------------------
@@ -8,15 +8,25 @@ import AppBar from "~/components/AppBar/AppBar";
 import BoardBar from "./BoardBar/BoardBar";
 import BoardContent from "./BoardContent/BoardContent";
 // --------------------- APIS ---------------------
-import { mockData } from "~/apis/mock-data";
+// import { mockData } from "~/apis/mock-data";
+import { fetchBoardDetailsAPI } from "~/apis";
 // --------------------- MAIN COMPONENT ---------------------
 const Board = () => {
+    const [board, setBoard] = useState(null);
+
+    useEffect(() => {
+        const boardId = "6842549c3a9cf39374918aa2";
+        //Call API
+        fetchBoardDetailsAPI(boardId).then((board) => {
+            setBoard(board);
+        });
+    }, []);
     return (
         <>
             <Container disableGutters maxWidth={false} sx={{ height: "100vh" }}>
                 <AppBar />
-                <BoardBar board={mockData.board} />
-                <BoardContent board={mockData.board} />
+                <BoardBar board={board} />
+                <BoardContent board={board} />
             </Container>
         </>
     );
